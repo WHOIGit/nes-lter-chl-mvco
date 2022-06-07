@@ -1,7 +1,7 @@
 ---
-title: "Minimal EDI package generated using EMLassemblyline and ediutilities"
-author: "Joe Futrelle"
-date: "2022-01-24"
+title: "chl-mvco-eml-assembly"
+author: "Kate Morkeski, Stace Beaulieu, Joe Futrelle"
+date: "2022-06-07"
 output: html_notebook
 ---
 
@@ -17,34 +17,40 @@ library(EMLassemblyline)
 library(ediutilities)
 library(here)
 library(lubridate)
+
 ```
 
 Read example data table
 
 ```{r}
-data_table <- read.csv(here('nes-lter-minimal.csv'))
-data_table$date = ymd_hms(data_table$date)
+
+chl_input <- read.excel(here('MVCO_chl_4EDI_copy20220601.xls')) # update this
+#data_table$date = ymd_hms(data_table$date)
+
 ```
 
 Read the Excel metadata template and generate text templates used by
 EMLassemblyline
 
 ```{r}
-excel_to_template(here('nes-lter-minimal-info'), 'nes-lter-minimal', rights='CC0')
+
+excel_to_template(here('chl-mvco-info'), 'chl-mvco-info', rights='CC0')
+# TODO update rights
+
 ```
 Generate the package and insert the parent project node into the resulting EML
 
 ```{r}
 # use a dummy package ID
-pkg_id <- 'knb-lter-nes.999.1'
+pkg_id <- 'knb-lter-nes.21.1'
 
 make_eml(here(),
-         dataset.title='Demonstration of minimal EDI package',
-         data.table='nes-lter-minimal.csv',
-         data.table.description='Example NES-LTER data',
+         dataset.title='Size-fractionated chlorophyll from the Martha’s Vineyard Coastal Observatory (MVCO), ongoing since 2003 (NES-LTER since 2017)',
+         data.table='nes-lter-chl-mvco.csv',
+         data.table.description='Chlorophyll from water column bottle samples taken near the Marthas Vineyard Coastal Observatory',
          data.table.name = 'Subset of NES-LTER nutrient data',
          temporal.coverage = temporal_coverage(data_table$date),
-         geographic.description = "NES-LTER Transect",
+         geographic.description = "Marthas Vineyard Coastal Observatory",
          geographic.coordinates = geographic_coordinates(data_table$latitude, data_table$longitude),
          maintenance.description = "ongoing",
          user.id = "NES",
@@ -52,4 +58,7 @@ make_eml(here(),
          package.id = pkg_id)
 
 project_insert(pkg_id)
+
+
+# TODO add additional info
 ```
