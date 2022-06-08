@@ -16,16 +16,103 @@ Libraries used
 library(EMLassemblyline)
 library(ediutilities)
 library(here)
+library(readxl)
 library(lubridate)
+library(tidyverse)
 
 ```
 
-Read example data table
+Read data table
 
 ```{r}
 
-chl_input <- read.excel(here('MVCO_chl_4EDI_copy20220601.xls')) # update this
+chl_input <- read_excel(here('MVCO_chl_4EDI.xlsx')) 
 #data_table$date = ymd_hms(data_table$date)
+
+```
+
+Format columns
+
+```{r}
+
+names(chl_input) <- tolower(names(chl_input))
+
+# combine date and time
+chl_input$start_date <- as.character(chl_input$start_date) 
+chl_input$start_time_utc <- as.character(chl_input$start_time_utc)
+chl_input$start_time_utc <- gsub("1899-12-31 ", "", chl_input$start_time_utc)
+chl_input$date_time_utc <- paste(chl_input$start_date, chl_input$start_time_utc)
+chl_input$date_time_utc <- as.POSIXct(chl_input$date_time_utc, tz = "GMT", format="%Y-%m-%d %H:%M:%OS")
+# does formatting as GMT have any consequences compared to actual UTC?
+
+chl_mvco <- chl_input %>%
+  rename(chl = 'chl (ug/l)') %>%
+  rename(phaeo = 'phaeo (ug/l)') %>%
+  select(-start_date, -start_time_utc)  %>%
+  relocate(date_time_utc, .before = latitude)
+
+# TODO round chl and phaeo columns
+
+# strip filter size out of replicate column
+chl_mvco$replicate <- gsub("10", "", chl_mvco$replicate)
+chl_mvco$replicate <- gsub("80", "", chl_mvco$replicate)
+
+```
+
+Handle quality flags
+
+```{r}
+
+unique(chl_input$quality_flag)
+
+# convert quality flag from lab standard to IODE 
+chl_mvco <- chl_mvco %>%
+   mutate(iode_quality_flag = case_when(is.na(chl) ~ 9,
+                                        quality_flag == "1" ~ 1,
+                                        is.na(quality_flag) ~ 2,
+                                        quality_flag == "2" ~ 3,
+                                        quality_flag == "3" ~ 4,
+                                        ))
+
+unique(chl_mvco$iode_quality_flag)
+
+# TODO check these results 
+
+chl_mvco <- chl_mvco %>%
+  relocate(iode_quality_flag, .before = fluorometer) %>%
+  select(-quality_flag) 
+  
+# TODO do we need separate quality flags for chl and phaeo since don't always have phaeo?   
+
+```
+
+Add Tioga cruise number
+
+```{r}
+
+Tioga_ID <- read_csv('MVCO_Tioga_cruise_list_2017-2021.csv', col_select = 1:4, show_col_types = FALSE) 
+
+# join Tioga cruise number to MV_event 
+Tioga_ID$event_number <- paste0("MVCO_", Tioga_ID$MV_Event)
+chl_mvco <- left_join(chl_mvco, Tioga_ID, by = "event_number")
+
+chl_mvco <- chl_mvco %>%
+  rename(ship = Ship) %>%
+  rename(cruise_ID = 'Cruise ID') %>%
+  select(-Date, -MV_Event)  %>%
+  relocate(ship, .before = date_time_utc) %>%
+  relocate(cruise_ID, .before = date_time_utc)
+ 
+```
+
+## Create package data file
+
+```{r}
+
+# order rows?
+  
+# write csv file for package
+write.csv(chl_mvco, "nes-lter-chl-mvco.csv", row.names = FALSE)
 
 ```
 
@@ -47,7 +134,7 @@ pkg_id <- 'knb-lter-nes.21.1'
 make_eml(here(),
          dataset.title='Size-fractionated chlorophyll from the Martha’s Vineyard Coastal Observatory (MVCO), ongoing since 2003 (NES-LTER since 2017)',
          data.table='nes-lter-chl-mvco.csv',
-         data.table.description='Chlorophyll from water column bottle samples taken near the Marthas Vineyard Coastal Observatory',
+         data.table.description="Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory",
          data.table.name = 'Subset of NES-LTER nutrient data',
          temporal.coverage = temporal_coverage(data_table$date),
          geographic.description = "Marthas Vineyard Coastal Observatory",
