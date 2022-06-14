@@ -1,0 +1,9 @@
+attributeName	code	definition
+iode_quality_flag	1	good
+iode_quality_flag	2	quality not evaluated, not available or unknown
+iode_quality_flag	3	questionable/suspect
+iode_quality_flag	4	bad
+iode_quality_flag	9	missing data
+filter_size	>0	Filtered on 0.7 micron filter
+filter_size	>0&<10	Filtered on 0.7 micron filter with 10 micron prefilter
+filter_size	>0&<80	Filtered on 0.7 micron filter with 80 micron prefilter

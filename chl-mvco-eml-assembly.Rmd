@@ -1,9 +1,11 @@
 ---
 title: "chl-mvco-eml-assembly"
-author: "Kate Morkeski, Stace Beaulieu, Joe Futrelle"
-date: "2022-06-07"
+author: "Kate Morkeski"
+date: "2022-06-14"
 output: html_notebook
 ---
+
+## Setup
 
 Libraries used
 
@@ -19,6 +21,7 @@ library(here)
 library(readxl)
 library(lubridate)
 library(tidyverse)
+library(httr)
 
 ```
 
@@ -27,7 +30,6 @@ Read data table
 ```{r}
 
 chl_input <- read_excel(here('MVCO_chl_4EDI.xlsx')) 
-#data_table$date = ymd_hms(data_table$date)
 
 ```
 
@@ -45,17 +47,33 @@ chl_input$date_time_utc <- paste(chl_input$start_date, chl_input$start_time_utc)
 chl_input$date_time_utc <- as.POSIXct(chl_input$date_time_utc, tz = "GMT", format="%Y-%m-%d %H:%M:%OS")
 # does formatting as GMT have any consequences compared to actual UTC?
 
+# format columns for new dataframe
 chl_mvco <- chl_input %>%
   rename(chl = 'chl (ug/l)') %>%
   rename(phaeo = 'phaeo (ug/l)') %>%
   select(-start_date, -start_time_utc)  %>%
-  relocate(date_time_utc, .before = latitude)
+  relocate(date_time_utc, .before = latitude) %>%
+  relocate(filter_size, .before = replicate) %>%
+  mutate(latitude = round(latitude, 4)) %>% 
+  mutate(longitude = round(longitude, 4)) %>% 
+  mutate(chl = round(chl, 3)) %>%
+  mutate(phaeo = round(phaeo, 3))
 
-# TODO round chl and phaeo columns
+# edit filter size designation to include prefilter
+chl_mvco <- chl_mvco %>%
+  mutate(filter_size = as.character(filter_size)) %>% 
+  mutate(filter_size = case_when(filter_size == "0" ~ ">0",
+                                 filter_size == "10" ~ ">0&<10",
+                                 filter_size == "80" ~ ">0&<80",
+                                 TRUE ~ filter_size))
 
 # strip filter size out of replicate column
 chl_mvco$replicate <- gsub("10", "", chl_mvco$replicate)
 chl_mvco$replicate <- gsub("80", "", chl_mvco$replicate)
+
+# create dummy depth column # will be unnecessary with new data table
+#chl_mvco$depth <- NA_real_
+chl_mvco <- chl_mvco %>% relocate(depth, .before = filter_size)
 
 ```
 
@@ -73,17 +91,26 @@ chl_mvco <- chl_mvco %>%
                                         quality_flag == "2" ~ 3,
                                         quality_flag == "3" ~ 4,
                                         ))
+# rows with missing chl are retained, with flag indicating missing
 
+# check on distribution of quality flags
+hist(chl_mvco$iode_quality_flag)
 unique(chl_mvco$iode_quality_flag)
+chl_bad <- filter(chl_mvco, iode_quality_flag == 4) # 30 samples have flag 4
+low_phaeo <- filter(chl_mvco, phaeo < 0)    # 11 samples have negative phaeo, 10 already flagged 3 or 4
 
-# TODO check these results 
+# replace chlorophyll and phaeo with NA for any samples flagged bad data 
+# convert quality flag for any samples with negative phaeo
+chl_mvco <- chl_mvco %>%
+  mutate(chl = replace(chl, iode_quality_flag == "4", NA)) %>%
+  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", NA)) %>%
+  mutate(iode_quality_flag = replace(iode_quality_flag, phaeo <0 & iode_quality_flag <3, 3))
 
+# update columns
 chl_mvco <- chl_mvco %>%
   relocate(iode_quality_flag, .before = fluorometer) %>%
   select(-quality_flag) 
   
-# TODO do we need separate quality flags for chl and phaeo since don't always have phaeo?   
-
 ```
 
 Add Tioga cruise number
@@ -96,6 +123,7 @@ Tioga_ID <- read_csv('MVCO_Tioga_cruise_list_2017-2021.csv', col_select = 1:4, s
 Tioga_ID$event_number <- paste0("MVCO_", Tioga_ID$MV_Event)
 chl_mvco <- left_join(chl_mvco, Tioga_ID, by = "event_number")
 
+# organize columns
 chl_mvco <- chl_mvco %>%
   rename(ship = Ship) %>%
   rename(cruise_ID = 'Cruise ID') %>%
@@ -105,14 +133,67 @@ chl_mvco <- chl_mvco %>%
  
 ```
 
-## Create package data file
+Create package data file
 
 ```{r}
 
-# order rows?
+# ensure rows are in time order
+chl_mvco <- chl_mvco[order(chl_mvco$date_time_utc),]
   
 # write csv file for package
 write.csv(chl_mvco, "nes-lter-chl-mvco.csv", row.names = FALSE)
+
+```
+## Quality checks
+
+Summarize and plot chlorophyll values 
+
+```{r}
+
+summary(chl_mvco)
+
+# check on any rows missing filter_size
+no_filter <- filter(chl_mvco, is.na(filter_size))
+
+# plot values vs depth
+ggplot(chl_mvco, aes(x=chl, y=-depth, color=filter_size))+ geom_point()
+
+chl_mvco$iode_quality_flag <- as.factor(chl_mvco$iode_quality_flag)
+
+# plot values vs cruise date
+ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=filter_size))+ geom_point()
+ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=filter_size))+ geom_point()
+ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=depth))+ geom_point()
+ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=depth))+ geom_point()
+ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=iode_quality_flag))+ geom_point()
+ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=iode_quality_flag))+ geom_point()
+
+```
+
+Map Sampling Locations
+
+Call the map_locs function from ediutilities package to map the sampling locations. Perform a visual check.
+
+```{r}
+
+# Map Check
+map_locs(df = chl_mvco, xvar = "longitude", yvar = "latitude",
+         region = "transect", colorvar = "filter_size")
+
+map_locs(df = chl_mvco, xvar = "longitude", yvar = "latitude",
+         region = "transect", colorvar = "depth")
+
+```
+## EML Assembly
+
+Read data table
+
+```{r}
+
+data_table <- read.csv(here('nes-lter-chl-mvco.csv'))
+
+# identify date column for ediutilities package to generate temporal coverage
+data_table$date = ymd_hms(data_table$date_time_utc)
 
 ```
 
@@ -121,23 +202,23 @@ EMLassemblyline
 
 ```{r}
 
-excel_to_template(here('chl-mvco-info'), 'chl-mvco-info', rights='CC0')
-# TODO update rights
+excel_to_template(here('nes-lter-chl-mvco-info'), 'nes-lter-chl-mvco', rights='CC0')
 
 ```
 Generate the package and insert the parent project node into the resulting EML
 
 ```{r}
-# use a dummy package ID
+
+#define package ID
 pkg_id <- 'knb-lter-nes.21.1'
 
 make_eml(here(),
          dataset.title='Size-fractionated chlorophyll from the Martha’s Vineyard Coastal Observatory (MVCO), ongoing since 2003 (NES-LTER since 2017)',
          data.table='nes-lter-chl-mvco.csv',
          data.table.description="Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory",
-         data.table.name = 'Subset of NES-LTER nutrient data',
+         data.table.name = 'nes-lter-chl-mvco',
          temporal.coverage = temporal_coverage(data_table$date),
-         geographic.description = "Marthas Vineyard Coastal Observatory",
+         geographic.description = "Martha's Vineyard Coastal Observatory",
          geographic.coordinates = geographic_coordinates(data_table$latitude, data_table$longitude),
          maintenance.description = "ongoing",
          user.id = "NES",
@@ -147,5 +228,5 @@ make_eml(here(),
 project_insert(pkg_id)
 
 
-# TODO add additional info
+# TODO add additional info with multiple projects
 ```
