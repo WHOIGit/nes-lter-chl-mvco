@@ -71,8 +71,6 @@ chl_mvco <- chl_mvco %>%
 chl_mvco$replicate <- gsub("10", "", chl_mvco$replicate)
 chl_mvco$replicate <- gsub("80", "", chl_mvco$replicate)
 
-# create dummy depth column # will be unnecessary with new data table
-#chl_mvco$depth <- NA_real_
 chl_mvco <- chl_mvco %>% relocate(depth, .before = filter_size)
 
 ```
@@ -202,7 +200,7 @@ EMLassemblyline
 
 ```{r}
 
-excel_to_template(here('nes-lter-chl-mvco-info'), 'nes-lter-chl-mvco', rights='CC0')
+excel_to_template(here('nes-lter-chl-mvco-info'), 'nes-lter-chl-mvco', rights='CCBY')
 
 ```
 Generate the package and insert the parent project node into the resulting EML
