@@ -60,11 +60,16 @@ chl_mvco <- chl_input %>%
   mutate(phaeo = round(phaeo, 3))
 
 # edit filter size designation to include prefilter
+# modify filter size designation for rows with prefilter size in replicate column
 chl_mvco <- chl_mvco %>%
   mutate(filter_size = as.character(filter_size)) %>% 
   mutate(filter_size = case_when(filter_size == "0" ~ ">0",
                                  filter_size == "10" ~ ">0&<10",
                                  filter_size == "80" ~ ">0&<80",
+                                 TRUE ~ filter_size)) %>% 
+  mutate(filter_size = case_when(replicate == "10a" ~ ">0&<10",
+                                 replicate == "10b" ~ ">0&<10",
+                                 replicate == "10c" ~ ">0&<10",
                                  TRUE ~ filter_size))
 
 # strip filter size out of replicate column

@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2022-06-30</pubDate>
+    <pubDate>2022-07-05</pubDate>
     <abstract>
       <para>This is a minimal demonstration of the EDI EML assembly line workflow based on&#13;
 a small subset of NES-LTER nutrient data.&#13;
@@ -226,8 +226,8 @@ preparation, and QA/QC, among other things.&#13;
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">461373</size>
-        <authentication method="MD5">105084f5b6fee5eb9c2823615dd28e2f</authentication>
+        <size unit="bytes">462625</size>
+        <authentication method="MD5">c66b11d593989acf3dbb60fa79412e52</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
