@@ -213,7 +213,7 @@ Generate the package and insert the parent project node into the resulting EML
 ```{r}
 
 #define package ID
-pkg_id <- 'knb-lter-nes.21.1'
+pkg_id <- 'knb-lter-nes.21.2'
 
 make_eml(here(),
          dataset.title='Size-fractionated chlorophyll from the Martha’s Vineyard Coastal Observatory (MVCO), ongoing since 2003 (NES-LTER since 2017)',

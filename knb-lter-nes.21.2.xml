@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="knb-lter-nes.21.1" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="knb-lter-nes.21.2" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
   <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
     <allow>
       <principal>uid=NES,o=LTER,dc=ecoinformatics,dc=org</principal>
@@ -48,10 +48,10 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2022-07-15</pubDate>
+    <pubDate>2023-04-04</pubDate>
     <abstract>
-      <para>&#13;
-Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). &#13;
+      <para>
+Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
 </para>
     </abstract>
     <keywordSet>
@@ -116,7 +116,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
     <methods>
       <methodStep>
         <description>
-          <para>&#13;
+          <para>
 # About Martha's Vineyard Coastal Observatory</para>
           <para>The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby.</para>
           <para># CTD Rosette Bottle and Bucket Sampling</para>
@@ -548,7 +548,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
     <metadata>
       <emlEditor>
         <app>EMLassemblyline</app>
-        <release>3.5.3</release>
+        <release>3.5.5</release>
       </emlEditor>
     </metadata>
   </additionalMetadata>
