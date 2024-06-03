@@ -102,12 +102,18 @@ unique(chl_mvco$iode_quality_flag)
 chl_bad <- filter(chl_mvco, iode_quality_flag == 4) # 30 samples have flag 4
 low_phaeo <- filter(chl_mvco, phaeo < 0)    # 11 samples have negative phaeo, 10 already flagged 3 or 4
 
-# replace chlorophyll and phaeo with NA for any samples flagged bad data 
+# replace chlorophyll and phaeo with NaN for any samples flagged bad data 
 # convert quality flag for any samples with negative phaeo
 chl_mvco <- chl_mvco %>%
-  mutate(chl = replace(chl, iode_quality_flag == "4", NA)) %>%
-  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", NA)) %>%
+  mutate(chl = replace(chl, iode_quality_flag == "4", "NaN")) %>%
+  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", "NaN")) %>%
   mutate(iode_quality_flag = replace(iode_quality_flag, phaeo <0 & iode_quality_flag <3, 3))
+
+# replace NA with NaN for chl, phaeo
+chl_mvco <- chl_mvco %>%
+  mutate(chl = ifelse(is.na(chl), "NaN", chl))
+chl_mvco <- chl_mvco %>%
+  mutate(phaeo = ifelse(is.na(phaeo), "NaN", phaeo))
 
 # update columns
 chl_mvco <- chl_mvco %>%
@@ -133,6 +139,12 @@ chl_mvco <- chl_mvco %>%
   select(-Date, -MV_Event)  %>%
   relocate(ship, .before = date_time_utc) %>%
   relocate(cruise_ID, .before = date_time_utc)
+
+# replace NA with empty string for ship, cruise_ID
+chl_mvco <- chl_mvco %>%
+  mutate(ship = ifelse(is.na(ship), "", ship))
+chl_mvco <- chl_mvco %>%
+  mutate(cruise_ID = ifelse(is.na(cruise_ID), "", cruise_ID))
  
 ```
 

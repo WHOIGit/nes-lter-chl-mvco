@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2023-04-04</pubDate>
+    <pubDate>2024-05-30</pubDate>
     <abstract>
       <para>
 Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
@@ -238,8 +238,8 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">462647</size>
-        <authentication method="MD5">cd1840b08a2293d31386337fef830646</authentication>
+        <size unit="bytes">474975</size>
+        <authentication method="MD5">f72687a2592a781fd5e0c9f0993e352d</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -265,10 +265,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
@@ -283,10 +279,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>ship</attributeName>
@@ -326,10 +318,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               <dateTimeDomain/>
             </dateTime>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>latitude</attributeName>
@@ -350,7 +338,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -373,7 +361,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -396,7 +384,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -438,10 +426,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>chl</attributeName>
@@ -462,7 +446,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -485,7 +469,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -535,10 +519,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
       </attributeList>
       <numberOfRecords>3050</numberOfRecords>
