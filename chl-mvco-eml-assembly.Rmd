@@ -102,18 +102,12 @@ unique(chl_mvco$iode_quality_flag)
 chl_bad <- filter(chl_mvco, iode_quality_flag == 4) # 30 samples have flag 4
 low_phaeo <- filter(chl_mvco, phaeo < 0)    # 11 samples have negative phaeo, 10 already flagged 3 or 4
 
-# replace chlorophyll and phaeo with NaN for any samples flagged bad data 
+# replace chlorophyll and phaeo with NA for any samples flagged bad data 
 # convert quality flag for any samples with negative phaeo
 chl_mvco <- chl_mvco %>%
-  mutate(chl = replace(chl, iode_quality_flag == "4", "NaN")) %>%
-  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", "NaN")) %>%
+  mutate(chl = replace(chl, iode_quality_flag == "4", NA)) %>%
+  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", NA)) %>%
   mutate(iode_quality_flag = replace(iode_quality_flag, phaeo <0 & iode_quality_flag <3, 3))
-
-# replace NA with NaN for chl, phaeo
-chl_mvco <- chl_mvco %>%
-  mutate(chl = ifelse(is.na(chl), "NaN", chl))
-chl_mvco <- chl_mvco %>%
-  mutate(phaeo = ifelse(is.na(phaeo), "NaN", phaeo))
 
 # update columns
 chl_mvco <- chl_mvco %>%
@@ -156,7 +150,7 @@ Create package data file
 chl_mvco <- chl_mvco[order(chl_mvco$date_time_utc),]
   
 # write csv file for package
-write.csv(chl_mvco, "nes-lter-chl-mvco.csv", row.names = FALSE)
+write.csv(chl_mvco, "nes-lter-chl-mvco.csv", na = "NaN", row.names = FALSE)
 
 ```
 ## Quality checks
