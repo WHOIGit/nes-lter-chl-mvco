@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2024-06-03</pubDate>
+    <pubDate>2024-06-11</pubDate>
     <abstract>
       <para>
 Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
@@ -100,7 +100,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             <calendarDate>2003-05-10</calendarDate>
           </beginDate>
           <endDate>
-            <calendarDate>2019-05-07</calendarDate>
+            <calendarDate>2024-02-02</calendarDate>
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
@@ -119,23 +119,26 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           <para>
 # About Martha's Vineyard Coastal Observatory</para>
           <para>The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby.</para>
+          <para>Starting in 2003, a monthly water sample has been collected at MVCO. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, 4 of the monthly MVCO water samples per year were collected as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. </para>
+          <para>Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, however, the same MVCO time series CTD rosette collection, sampling protocol, and anlaysis methods have been used. </para>
           <para># CTD Rosette Bottle and Bucket Sampling</para>
-          <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00) or Niskin bottle number (e.g. _01). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. Samples were collected for whole sea water (multiple depths) and &lt;10 (surface only) size fractions throughout the time series. The &lt;80 size fraction was collected from 2003 to 2008, mainly from surface locations. For each depth sampled, two to three replicate sample bottles were filled from each Niskin, stored in a cooler, and filtered as soon as possible (within 4 hours).  </para>
+          <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00) or Niskin bottle number (e.g. _01). The depth for bucket samples is 0 m; some MVCO event surface Niskin samples also have depth recorded as 0 m. Samples were collected for whole sea water (multiple depths) and &lt;10 (surface only) size fractions throughout the time series. The &lt;80 size fraction was collected from 2003 to 2008, mainly from surface locations. For each depth sampled, two to three replicate sample bottles were filled from each Niskin, stored in a cooler, and filtered as soon as possible (within 4 hours).  </para>
           <para># Chlorophyll Filtering Protocol</para>
           <para>For each sample, a known volume was filtered through a GF/F filter under low vacuum suction (5-10 in. Hg). The &lt;10 and &lt;80 micron size fractions were separated using a filter funnel containing corresponding 10 or 80 micron Nitex mesh screen above the GF/F. Filters were transferred to tissue capsules and flash frozen in liquid nitrogen until being extracted. The two to three replicates filtered from a given Niskin bottle are indicated by a, b, or c in the data table. </para>
           <para># Chlorophyll a measurement</para>
-          <para>Filters were removed from liquid nitrogen storage and transferred to glass test tubes. They were then extracted in 5 mL of 90% acetone for 24 hours in a dark refrigerator. They were then vortexed and centrifuged. The solution was measured on a Turner Designs Handheld Aquafluor fluorometer or Turner Designs Picofluorometer Handheld In Vitro fluorometer, acidified with 3 drops of 10% hydrochloric acid, and measured again. If the chlorophyll readings were out of the range of the fluorometer, the solution was diluted as needed. A blank and a solid standard were measured at the beginning and end of each batch of samples. The fluorometer was calibrated approximately annually using a serial dilution of stock solution made from commercially available chlorophyll a from spinach (Sigma-Aldrich C5753). The majority of the samples were analyzed in the Sosik lab, with a subset analyzed in the Morrison and Moisan labs. Of these, a subset of samples was analyzed in both the Sosik lab and the collaborating lab, with replicates divided between the labs for intercomparison. </para>
+          <para>Filters were removed from liquid nitrogen storage and transferred to glass test tubes. They were then extracted in 5 mL of 90% acetone for 24 hours in a dark refrigerator. A larger extraction volume of 10 or 15 mL was sometimes used when filter visually appeared concentrated when putting in test tube. Test tubes were then vortexed and centrifuged. The solution was measured on a Turner Designs Handheld Aquafluor fluorometer or Turner Designs Picofluorometer Handheld In Vitro fluorometer, acidified with 2-3 drops of 10% hydrochloric acid, and measured again. If the chlorophyll readings were out of the range of the fluorometer, the solution was diluted as needed. A blank and a solid standard were measured at the beginning and end of each batch of samples. The fluorometer was calibrated approximately annually using a serial dilution of stock solution made from commercially available chlorophyll a from spinach (Sigma-Aldrich C5753). The majority of the samples were analyzed in the Sosik lab, with a subset analyzed in the Morrison and Moisan labs. Of these, a subset of samples was analyzed in both the Sosik lab and the collaborating lab, with replicates divided between the labs for intercomparison. </para>
           <para># Data Cleaning and Package Assembly</para>
           <para>We formatted date and time; rounded latitude, longitude, chlorophyll, and phaeopigment; formatted replicate and filter size descriptors; added ship name and R/V Tioga event number when applicable; and ensured that rows were arranged in chronological order. We converted the lab’s internal quality flag to IODE quality flag, described below. Data cleaning and metadata template assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-chl-mvco.</para>
           <para># Quality Assurance</para>
           <para>We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We checked differences between replicates, visually inspected plots, and performed range checks. The Sosik lab compared chlorophyll a concentration to total chlorophyll a as measured separately via HPLC, where available. We provide a column in the data table to indicate quality using IODE Primary Level flags: 1 good; 2 not evaluated, not available or unknown; 3 questionable/suspect; 4 bad; 9 missing data (see IODE Ocean Data Standards recommendation here: http://dx.doi.org/10.25607/OBP-6). Any sample with a negative phaeopigment value is provided with a flag of 3 (questionable). Samples with a flag of 4 (bad) are provided with chlorophyll and phaeopigment value of NA. A flag of 2 (not evaluated) is applied to samples for which the provider’s thorough evaluation of quality has not yet been completed. </para>
           <para># Previous versions of these data</para>
-          <para>Previous versions of these data (2003-05-10 through 2015-12-14) are available at NASA SeaBASS DOI: 10.5067/SEABASS/MVCO/DATA001 [https://seabass.gsfc.nasa.gov/archive/WHOI/MVCO/archive/chl] with license: https://seabass.gsfc.nasa.gov/wiki/Access_Policy. The data in this EDI package are updated and include additional dates (i.e., they are not re-used from SeaBASS). </para>
+          <para>Previous versions of these data (2003-05-10 through 2015-12-14) are available at NASA SeaBASS DOI: 10.5067/SEABASS/MVCO/DATA001 [https://seabass.gsfc.nasa.gov/archive/WHOI/MVCO/archive/chl] with license: https://seabass.gsfc.nasa.gov/wiki/Access_Policy. The data in this EDI package are updated and include additional dates (i.e., they are not re-used from SeaBASS). 
+</para>
         </description>
       </methodStep>
     </methods>
     <project>
-      <title>Northeast U.S. Shelf LTER</title>
+      <title>LTER: Scales of Variability in Ecosystem Dynamics and Production on the Changing Northeast U.S. Shelf (NES II)</title>
       <personnel>
         <individualName>
           <givenName>Heidi</givenName>
@@ -144,15 +147,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
         <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
         <userId directory="https://orcid.org">https://orcid.org/0000-0002-4591-2842</userId>
         <role>Principal Investigator</role>
-      </personnel>
-      <personnel>
-        <individualName>
-          <givenName>Stace</givenName>
-          <surName>Beaulieu</surName>
-        </individualName>
-        <electronicMailAddress>sbeaulieu@whoi.edu</electronicMailAddress>
-        <userId directory="https://orcid.org">https://orcid.org/0000-0002-2609-5453</userId>
-        <role>Co-Principal Investigator</role>
       </personnel>
       <personnel>
         <individualName>
@@ -170,15 +164,6 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
         </individualName>
         <electronicMailAddress>rji@whoi.edu</electronicMailAddress>
         <userId directory="https://orcid.org">https://orcid.org/0000-0002-8839-5427</userId>
-        <role>Co-Principal Investigator</role>
-      </personnel>
-      <personnel>
-        <individualName>
-          <givenName>Steven</givenName>
-          <surName>Lentz</surName>
-        </individualName>
-        <electronicMailAddress>slentz@whoi.edu</electronicMailAddress>
-        <userId directory="https://orcid.org">https://orcid.org/0000-0001-7498-0281</userId>
         <role>Co-Principal Investigator</role>
       </personnel>
       <personnel>
@@ -219,6 +204,15 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       </personnel>
       <personnel>
         <individualName>
+          <givenName>Mei</givenName>
+          <surName>Sato</surName>
+        </individualName>
+        <electronicMailAddress>msato@whoi.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0002-0217-9898</userId>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
           <givenName>Rachel</givenName>
           <surName>Stanley</surName>
         </individualName>
@@ -226,20 +220,59 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
         <userId directory="https://orcid.org">https://orcid.org/0000-0003-4860-2476</userId>
         <role>Co-Principal Investigator</role>
       </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Weifeng Gordon</givenName>
+          <surName>Zhang</surName>
+        </individualName>
+        <electronicMailAddress>wzhang@whoi.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0002-2819-1780</userId>
+        <role>Co-Principal Investigator</role>
+      </personnel>
       <abstract>
         <para>The Northeast U.S. Shelf (NES) Long-Term Ecological Research (LTER) project integrates observations, experiments, and models to understand and predict how planktonic food webs are changing, and how those changes impact the productivity of higher trophic levels. The NES-LTER is co-located with the Northeast U.S. Continental Shelf Large Marine Ecosystem, spanning the Middle Atlantic Bight and Gulf of Maine. Our focal cross-shelf transect extends about 150 km southward from Martha’s Vineyard, MA, to just beyond the shelf break. Our overarching question is: How is climate change impacting the pelagic NES ecosystem and, in particular, affecting the relationship between compositional (e.g., species diversity and size structure) and aggregate (e.g., rates of primary production, and transfer of energy to important forage fish species) variability?</para>
       </abstract>
       <funding>
-        <para>NSF Award OCE-1655686</para>
+        <para>NSF Award OCE-2322676</para>
       </funding>
+      <relatedProject>
+        <title>LTER: Linking Pelagic Community Structure with Ecosystem Dynamics and Production Regimes on the Changing Northeast US Shelf (NES I)</title>
+        <personnel>
+          <individualName>
+            <givenName>Heidi</givenName>
+            <surName>Sosik</surName>
+          </individualName>
+          <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0002-4591-2842</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>NSF Award OCE-1655686</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>RAPID: Collaborative Research: Autumn transition in plankton ecology during an ocean heatwave on the Northeast U.S. Shelf</title>
+        <personnel>
+          <individualName>
+            <givenName>Heidi</givenName>
+            <surName>Sosik</surName>
+          </individualName>
+          <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">0000-0002-4591-2842</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <award>
+          <funderName>National Science Foundation</funderName>
+          <awardNumber>NSF Award OCE-210243</awardNumber>
+          <title>RAPID: Collaborative Research: Autumn transition in plankton ecology during an ocean heatwave on the Northeast U.S. Shelf</title>
+        </award>
+      </relatedProject>
     </project>
     <dataTable>
       <entityName>nes-lter-chl-mvco</entityName>
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">462788</size>
-        <authentication method="MD5">91e68ca6972a53588012742c0967dfcc</authentication>
+        <size unit="bytes">552295</size>
+        <authentication method="MD5">3705a5550e75d33ce3462a1f3198f1bd</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -463,7 +496,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">-0.305</minimum>
-                  <maximum exclusive="false">4.06</maximum>
+                  <maximum exclusive="false">5.12</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -521,7 +554,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>3050</numberOfRecords>
+      <numberOfRecords>3604</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>

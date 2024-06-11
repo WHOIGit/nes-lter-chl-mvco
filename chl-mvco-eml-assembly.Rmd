@@ -22,6 +22,7 @@ library(readxl)
 library(lubridate)
 library(tidyverse)
 library(httr)
+library(compareDF)
 
 ```
 
@@ -29,7 +30,7 @@ Read data table
 
 ```{r}
 
-chl_input <- read_excel(here('MVCO_chl_4EDI_copy20220713.xlsx')) 
+chl_input <- read_excel(here('MVCO_chl_4EDI_copy20240607.xlsx')) 
 
 ```
 
@@ -120,34 +121,88 @@ Add Tioga cruise number
 
 ```{r}
 
-Tioga_ID <- read_csv('MVCO_Tioga_cruise_list_2017-2021.csv', col_select = 1:4, show_col_types = FALSE) 
+df <- read_excel('List of MVCO cruises for NES-LTER project.xlsx', sheet = "catalog", skip = 6)
+Tioga_ID <- df %>% select(1, 3, 4, 5)
 
-# join Tioga cruise number to MV_event 
-Tioga_ID$event_number <- paste0("MVCO_", Tioga_ID$MV_Event)
 chl_mvco <- left_join(chl_mvco, Tioga_ID, by = "event_number")
 
-# organize columns
 chl_mvco <- chl_mvco %>%
-  rename(ship = Ship) %>%
-  rename(cruise_ID = 'Cruise ID') %>%
-  select(-Date, -MV_Event)  %>%
+  select(-date)  %>%
   relocate(ship, .before = date_time_utc) %>%
   relocate(cruise_ID, .before = date_time_utc)
-
-# replace NA with empty string for ship, cruise_ID
-chl_mvco <- chl_mvco %>%
-  mutate(ship = ifelse(is.na(ship), "", ship))
-chl_mvco <- chl_mvco %>%
-  mutate(cruise_ID = ifelse(is.na(cruise_ID), "", cruise_ID))
  
+```
+
+# Merge MVCO samples from transect cruises
+
+```{r}
+chl_transect <- read_from_api(type = "chl", "all")
+
+# Transect MVCO ranges lat =  41.3125 - 41.3269, lon = -70.5629 to -70.5857
+# MVCO_nut_copy ranges lat = 41.1364 - 41.339, lon = -70.4151 to -70.6839
+lat_min <- 41.13
+lat_max <- 41.33
+lon_min <- -70.68
+lon_max <- -70.41
+
+# Filter rows within the specified range of latitude and longitude
+filtered_chl <- chl_transect %>%
+  filter(latitude >= lat_min & latitude <= lat_max,
+         longitude >= lon_min & longitude <= lon_max)
+
+filtered_chl <- filtered_chl %>%
+  rename(date_time_utc = date)
+
+# Add ship, event_number, event_number_niskin, and cruise_ID columns and populate
+filtered_chl <- filtered_chl %>%
+  mutate(ship = case_when(
+    grepl("^AR", cruise) ~ "Armstrong",
+    grepl("^AT", cruise) ~ "Atlantis",
+    grepl("^EN", cruise) ~ "Endeavor",
+    grepl("^HRS", cruise) ~ "Sharp",
+    TRUE ~ ""  # Set to empty string for unmatched cases
+      ),
+    event_number = paste(cruise, cast, sep = "_"),  
+    event_number_niskin = paste(cruise, cast, niskin, sep = "_"), 
+    cruise_ID = cruise
+  )
+
+# Merge transect nut data with nutrients
+common_columns <- intersect(names(chl_mvco), names(filtered_chl))
+filtered_chl_aligned <- filtered_chl %>% select(all_of(common_columns))
+missing_columns <- setdiff(names(chl_mvco), names(filtered_chl_aligned))
+filtered_chl_aligned[missing_columns] <- NA
+filtered_chl_aligned <- filtered_chl_aligned %>% select(names(chl_mvco))
+chl_updated <- bind_rows(chl_mvco, filtered_chl_aligned)
+
+# Round lat/long and chl & phaeo
+chl_updated <- chl_updated  %>% 
+  mutate(latitude = round(latitude, 4)) %>% 
+  mutate(longitude = round(longitude, 4)) %>%
+  mutate(chl = round(chl, 3)) %>%
+  mutate(phaeo = round(phaeo, 3))
+
+# Set iode_quality_flag_phosphate to 2 where it is NA
+chl_updated <- chl_updated %>%
+  mutate(iode_quality_flag = ifelse(is.na(iode_quality_flag), 2, iode_quality_flag))
+
+chl_updated <- chl_updated %>%
+  mutate(fluorometer = ifelse(is.na(fluorometer),"Turner Designs Aquafluor Handheld Serial Number 800446", fluorometer))
+
 ```
 
 Create package data file
 
 ```{r}
 
+chl_updated <- chl_updated %>%
+  mutate(
+    ship = ifelse(is.na(ship), "", ship),
+    cruise_ID = ifelse(is.na(cruise_ID) | cruise_ID == "NA", "", cruise_ID)
+  )
+
 # ensure rows are in time order
-chl_mvco <- chl_mvco[order(chl_mvco$date_time_utc),]
+chl_mvco <- chl_updated[order(chl_updated$date_time_utc),]
   
 # write csv file for package
 write.csv(chl_mvco, "nes-lter-chl-mvco.csv", na = "NaN", row.names = FALSE)
@@ -166,16 +221,23 @@ no_filter <- filter(chl_mvco, is.na(filter_size))
 
 # plot values vs depth
 ggplot(chl_mvco, aes(x=chl, y=-depth, color=filter_size))+ geom_point()
+ggsave("chl-mvco-values-vs-depth.png")
 
 chl_mvco$iode_quality_flag <- as.factor(chl_mvco$iode_quality_flag)
 
 # plot values vs cruise date
 ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=filter_size))+ geom_point()
+ggsave("chl-mvco-filter-size.png")
 ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=filter_size))+ geom_point()
+ggsave("phaeo-mvco-filter-size.png")
 ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=depth))+ geom_point()
+ggsave("chl-mvco-depth.png")
 ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=depth))+ geom_point()
+ggsave("phaeo-mvco-depth.png")
 ggplot(chl_mvco, aes(x=date_time_utc, y=chl, color=iode_quality_flag))+ geom_point()
+ggsave("chl-mvco-iode-quality-flag.png")
 ggplot(chl_mvco, aes(x=date_time_utc, y=phaeo, color=iode_quality_flag))+ geom_point()
+ggsave("phaeo-mvco-iode-quality-flag.png")
 
 ```
 
@@ -193,6 +255,24 @@ map_locs(df = chl_mvco, xvar = "longitude", yvar = "latitude",
          region = "transect", colorvar = "depth")
 
 ```
+
+## Read in previous version MVCO nutrient package to compare to new data set
+
+```{r}
+
+url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.21.1&entityid=2a7f068e3256f6453e1b31fc247f5c6f')
+
+httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
+tf
+
+chl_mvco_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
+
+comparison <- compare_df(chl_mvco, chl_mvco_pubd, c("event_number", "depth"))
+
+create_output_table(comparison, output_type='xlsx', file_name='version_comparison.xlsx')
+
+```
+
 ## EML Assembly
 
 Read data table
@@ -234,7 +314,7 @@ make_eml(here(),
          user.domain = "LTER",
          package.id = pkg_id)
 
-project_insert(pkg_id)
+project_insert(pkg_id, filename = 'parent_project_NESI-II_RAPID.txt')
 
 
 # TODO add additional info with multiple projects
