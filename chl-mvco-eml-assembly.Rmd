@@ -182,6 +182,20 @@ chl_updated <- chl_updated  %>%
   mutate(chl = round(chl, 3)) %>%
   mutate(phaeo = round(phaeo, 3))
 
+# modify filter size designation less than 10 or 80
+chl_updated <- chl_updated %>%
+  mutate(filter_size = as.character(filter_size)) %>% 
+  mutate(filter_size = case_when(filter_size == "<10" ~ ">0&<10",
+                                 filter_size == "<80" ~ ">0&<80",
+                                 TRUE ~ filter_size))
+
+# replace chlorophyll and phaeo with NA for any samples flagged bad data 
+# convert quality flag for any samples with negative phaeo
+chl_updated <- chl_updated %>%
+  mutate(chl = replace(chl, iode_quality_flag == "4", NA)) %>%
+  mutate(phaeo = replace(phaeo, iode_quality_flag == "4", NA)) %>%
+  mutate(iode_quality_flag = replace(iode_quality_flag, phaeo <0 & iode_quality_flag <3, 3))
+
 # Set iode_quality_flag_phosphate to 2 where it is NA
 chl_updated <- chl_updated %>%
   mutate(iode_quality_flag = ifelse(is.na(iode_quality_flag), 2, iode_quality_flag))
