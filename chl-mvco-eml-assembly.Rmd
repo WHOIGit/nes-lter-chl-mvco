@@ -30,7 +30,7 @@ Read data table
 
 ```{r}
 
-chl_input <- read_excel(here('MVCO_chl_4EDI_copy20240607.xlsx')) 
+chl_input <- read_excel(here('MVCO_chl_4EDI_copy20240617.xlsx')) 
 
 ```
 
@@ -128,9 +128,13 @@ chl_mvco <- left_join(chl_mvco, Tioga_ID, by = "event_number")
 
 chl_mvco <- chl_mvco %>%
   select(-date)  %>%
+
   relocate(ship, .before = date_time_utc) %>%
   relocate(cruise_ID, .before = date_time_utc)
- 
+
+chl_mvco <- chl_mvco %>%
+  rename(cruise = cruise_ID)  
+
 ```
 
 # Merge MVCO samples from transect cruises
@@ -153,7 +157,7 @@ filtered_chl <- chl_transect %>%
 filtered_chl <- filtered_chl %>%
   rename(date_time_utc = date)
 
-# Add ship, event_number, event_number_niskin, and cruise_ID columns and populate
+# Add ship, event_number, event_number_niskin columns and populate
 filtered_chl <- filtered_chl %>%
   mutate(ship = case_when(
     grepl("^AR", cruise) ~ "Armstrong",
@@ -164,7 +168,6 @@ filtered_chl <- filtered_chl %>%
       ),
     event_number = paste(cruise, cast, sep = "_"),  
     event_number_niskin = paste(cruise, cast, niskin, sep = "_"), 
-    cruise_ID = cruise
   )
 
 # Merge transect nut data with nutrients
@@ -212,7 +215,7 @@ Create package data file
 chl_updated <- chl_updated %>%
   mutate(
     ship = ifelse(is.na(ship), "", ship),
-    cruise_ID = ifelse(is.na(cruise_ID) | cruise_ID == "NA", "", cruise_ID)
+    cruise = ifelse(is.na(cruise) | cruise == "NA", "", cruise)
   )
 
 # ensure rows are in time order
