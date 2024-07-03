@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2024-06-18</pubDate>
+    <pubDate>2024-07-03</pubDate>
     <abstract>
       <para>
 Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
@@ -271,8 +271,8 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">551569</size>
-        <authentication method="MD5">7bdc4232c344e29da27fe57ce3a2b883</authentication>
+        <size unit="bytes">551241</size>
+        <authentication method="MD5">da4bc9926f577b7d39b2260f84cc9f54</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
