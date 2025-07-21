@@ -24,7 +24,8 @@
     </creator>
     <creator>
       <individualName>
-        <givenName>E. Taylor</givenName>
+        <givenName>E.</givenName>
+        <givenName>Taylor</givenName>
         <surName>Crockford</surName>
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
@@ -48,10 +49,10 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2025-07-15</pubDate>
+    <pubDate>2025-07-21</pubDate>
     <abstract>
       <para>
-Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
+Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) cruises (majority single day cruises) in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
 </para>
     </abstract>
     <keywordSet>
@@ -132,7 +133,12 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           <para># Quality Assurance</para>
           <para>We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We checked differences between replicates, visually inspected plots, and performed range checks. The Sosik lab compared chlorophyll a concentration to total chlorophyll a as measured separately via HPLC, where available. We provide a column in the data table to indicate quality using IODE Primary Level flags: 1 good; 2 not evaluated, not available or unknown; 3 questionable/suspect; 4 bad; 9 missing data (see IODE Ocean Data Standards recommendation here: http://dx.doi.org/10.25607/OBP-6). Any sample with a negative phaeopigment value is provided with a flag of 3 (questionable). Samples with a flag of 4 (bad) are provided with chlorophyll and phaeopigment value of NA. A flag of 2 (not evaluated) is applied to samples for which the provider’s thorough evaluation of quality has not yet been completed. </para>
           <para># Previous versions of these data</para>
-          <para>Previous versions of these data (2003-05-10 through 2015-12-14) are available at NASA SeaBASS DOI: 10.5067/SEABASS/MVCO/DATA001 [https://seabass.gsfc.nasa.gov/archive/WHOI/MVCO/archive/chl] with license: https://seabass.gsfc.nasa.gov/wiki/Access_Policy. The data in this EDI package are updated and include additional dates (i.e., they are not re-used from SeaBASS). 
+          <para>Previous versions of these data (2003-05-10 through 2015-12-14) are available at NASA SeaBASS DOI: 10.5067/SEABASS/MVCO/DATA001 [https://seabass.gsfc.nasa.gov/archive/WHOI/MVCO/archive/chl] with license: https://seabass.gsfc.nasa.gov/wiki/Access_Policy. The data in this EDI package are updated and include additional dates (i.e., they are not re-used from SeaBASS). </para>
+          <para># Related Packages</para>
+          <para>Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO), are in the following package:</para>
+          <para>Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2025. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/efff67e138fe866c2e763e2ae68e2d34 (Accessed 2025-07-21).</para>
+          <para>Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, which cover a larger geographic area of the same region, are in the following package:\</para>
+          <para>Sosik, H.M., E.T. Crockford, E. Peacock, T. Rynearson, D. Fontaine, S. Menden-Deuer, P. Marrec, and OOI CGSN Data Team. 2023. Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, ongoing since 2017. ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/a8170b4f30fec183592ea7868d7bc1d4 (Accessed 2025-07-21).
 </para>
         </description>
       </methodStep>
@@ -271,8 +277,8 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">559525</size>
-        <authentication method="MD5">04099574c98fb83f7261031f12322726</authentication>
+        <size unit="bytes">562207</size>
+        <authentication method="MD5">e8ad4c828d6eb559859782152f829930</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -287,13 +293,13 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <attributeList>
         <attribute>
           <attributeName>event_number</attributeName>
-          <attributeDefinition>Identification number for each MVCO discrete sampling event</attributeDefinition>
+          <attributeDefinition>Identification number for each sampling event, consisting of either MVCO event number or NES-LTER transect cruise and cast number</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Identification number for each MVCO discrete sampling event</definition>
+                  <definition>Identification number for each sampling event, consisting of either MVCO event number or NES-LTER transect cruise and cast number</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -301,13 +307,13 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event</attributeDefinition>
+          <attributeDefinition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event  or NES-LTER transect cruise, cast number, and Niskin number</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event</definition>
+                  <definition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event  or NES-LTER transect cruise, cast number, and Niskin number</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -329,13 +335,13 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
         </attribute>
         <attribute>
           <attributeName>cruise</attributeName>
-          <attributeDefinition>Cruise identifer for the R/V Tioga</attributeDefinition>
+          <attributeDefinition>Identifier for research cruise generally including abbreviation for research vessel and voyage number</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Cruise identifer for the R/V Tioga</definition>
+                  <definition>Identifier for research cruise generally including abbreviation for research vessel and voyage number</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -472,7 +478,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="false">0.011</minimum>
                   <maximum exclusive="false">16.625</maximum>
                 </bounds>
               </numericDomain>
@@ -554,7 +560,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>3652</numberOfRecords>
+      <numberOfRecords>3666</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
