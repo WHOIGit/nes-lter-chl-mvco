@@ -49,7 +49,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2025-07-21</pubDate>
+    <pubDate>2026-02-10</pubDate>
     <abstract>
       <para>
 Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) cruises (majority single day cruises) in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
@@ -101,7 +101,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
             <calendarDate>2003-05-10</calendarDate>
           </beginDate>
           <endDate>
-            <calendarDate>2024-09-11</calendarDate>
+            <calendarDate>2025-12-05</calendarDate>
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
@@ -277,8 +277,8 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">562207</size>
-        <authentication method="MD5">e8ad4c828d6eb559859782152f829930</authentication>
+        <size unit="bytes">582231</size>
+        <authentication method="MD5">3e6f67da1c7ec34866695f5882cdabf6</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -560,7 +560,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>3666</numberOfRecords>
+      <numberOfRecords>3794</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
