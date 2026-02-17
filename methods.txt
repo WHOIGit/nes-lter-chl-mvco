@@ -37,6 +37,6 @@ Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cr
 
 Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2025. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/efff67e138fe866c2e763e2ae68e2d34 (Accessed 2025-07-21).
 
-Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, which cover a larger geographic area of the same region, are in the following package:\
+Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, which cover a larger geographic area of the same region, are in the following package:
 
 Sosik, H.M., E.T. Crockford, E. Peacock, T. Rynearson, D. Fontaine, S. Menden-Deuer, P. Marrec, and OOI CGSN Data Team. 2023. Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, ongoing since 2017. ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/a8170b4f30fec183592ea7868d7bc1d4 (Accessed 2025-07-21).
