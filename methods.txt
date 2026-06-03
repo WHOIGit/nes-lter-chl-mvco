@@ -29,7 +29,7 @@ We assured that the geographic and temporal coverage of the clean data table wer
 
 # Differences from Previous Version
 
-In version 2, 742 new rows of data were added. The majority of the new data range in time from Feb 2019 through Dec 2025. Chlorophyll data from multi-day NES-LTER transect cruises beginning in 2018 and described above were added. 
+In version two, 742 new rows of data were added. The majority of the new data range in time from Feb 2019 through Dec 2025. Chlorophyll data from multi-day NES-LTER transect cruises beginning in 2018 and described above were added. Additionally, quality was evaluated on samples throughout the time series. 
 
 # Previous versions of these data
 
