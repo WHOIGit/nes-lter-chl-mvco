@@ -49,7 +49,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2026-02-10</pubDate>
+    <pubDate>2026-06-03</pubDate>
     <abstract>
       <para>
 Size-fractionated chlorophyll a and phaeopigments are measured from water column bottle and bucket samples taken on Northeast U.S. Shelf Long-Term Ecological Research (NES-LTER) cruises (majority single day cruises) in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO), as a proxy for phytoplankton biomass. Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Size fractions in addition to whole seawater (&gt;0.7 micron) include &lt;10 and &lt;80 microns. Pigments were analyzed using fluorometers in which fluorescence was measured versus a blank and a standard, and final concentrations were calculated in micrograms per liter (or mg per cubic meter). 
@@ -137,7 +137,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           <para># Related Packages</para>
           <para>Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO), are in the following package:</para>
           <para>Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2025. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/efff67e138fe866c2e763e2ae68e2d34 (Accessed 2025-07-21).</para>
-          <para>Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, which cover a larger geographic area of the same region, are in the following package:\</para>
+          <para>Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, which cover a larger geographic area of the same region, are in the following package:</para>
           <para>Sosik, H.M., E.T. Crockford, E. Peacock, T. Rynearson, D. Fontaine, S. Menden-Deuer, P. Marrec, and OOI CGSN Data Team. 2023. Size-fractionated chlorophyll from water column bottle samples collected during NES-LTER Transect cruises, ongoing since 2017. ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/a8170b4f30fec183592ea7868d7bc1d4 (Accessed 2025-07-21).
 </para>
         </description>
@@ -277,8 +277,8 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
       <entityDescription>Chlorophyll from water column bottle samples taken near the Martha's Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-chl-mvco.csv</objectName>
-        <size unit="bytes">582231</size>
-        <authentication method="MD5">3e6f67da1c7ec34866695f5882cdabf6</authentication>
+        <size unit="bytes">582265</size>
+        <authentication method="MD5">0e07c6433ebb3069e7759cc482cee0a6</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -501,7 +501,7 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">-0.305</minimum>
+                  <minimum exclusive="false">0</minimum>
                   <maximum exclusive="false">5.329</maximum>
                 </bounds>
               </numericDomain>
@@ -560,14 +560,14 @@ Size-fractionated chlorophyll a and phaeopigments are measured from water column
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>3794</numberOfRecords>
+      <numberOfRecords>3792</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
     <metadata>
       <emlEditor>
         <app>EMLassemblyline</app>
-        <release>3.5.5</release>
+        <release>3.6.0</release>
       </emlEditor>
     </metadata>
   </additionalMetadata>
